@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('index') }}" method="post">
+        <div id="data" class="table">
+            {% for workout in workouts %}
+            <div class="row">
+                <div class="col-sm">{{ workout['title'] }}</div>
+                <div class="col-sm"><input id="choice" type="radio" name="choice" value="{{ workout['id'] }}"></div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="start" class="btn btn-primary" type="submit">Start Workout</button>
+    </form>
+{% endblock %}

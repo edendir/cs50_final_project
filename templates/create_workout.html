@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Workout
+{% endblock %}
+
+{% block main %}
+    <form action="/create_workout" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="title" placeholder="Title" type="text">
+        </div>
+        <div id="data" name="data" class="container">
+            <div class="row">
+              <div class="col-md">Exercise Name</div>
+              <div class="col-sm">Sets</div>
+              <div class="col-sm">Reps</div>
+              <div class="col-sm">Weight</div>
+            </div>
+          </div>
+        <button id="addRowBtn" class="btn" type="button">Add Row</button>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+
+    <script>
+        // JavaScript code for making the table editable
+        // Function to create a new blank row
+        let rownum = 1
+        function createBlankRow() {
+          const tbody = document.querySelector('#data');
+          const newRow = document.createElement('div');
+          newRow.className = 'row';
+          newRow.innerHTML = `
+              <div class="col-md"><input autocomplete="off" name="exercise${rownum}" placeholder="Exercise" type="text"></div>
+              <div class="col-sm"><input autocomplete="off" name="sets${rownum}" placeholder="Sets" type="text"></div>
+              <div class="col-sm"><input autocomplete="off" name="reps${rownum}" placeholder="Reps" type="text"></div>
+              <div class="col-sm"><input autocomplete="off" name="weight${rownum}" placeholder="Weight" type="text"></div>
+          `;
+          tbody.appendChild(newRow);
+          rownum++;
+        }
+
+        // Function to handle click event on "Add Row" button
+        document.getElementById('addRowBtn').addEventListener('click', () => {
+          createBlankRow();
+          event.preventDefault();
+        });
+
+        // Call createBlankRow to initially add a blank row
+        createBlankRow();
+        </script>
+{% endblock %}

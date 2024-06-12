@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Select Program
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('select_program') }}" method="post">
+        <div class="mb-3">
+            <h2>Programs</h2>
+        </div>
+        <div id="data" class="table">
+            {% for program in programs %}
+            <div class="row">
+                <div class="col-sm">{{ program['name'] }}</div>
+                <div class="col-sm"><input id="choice" type="radio" name="choice" value="{{ program['id'] }}"></div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit">Start Program</button>
+    </form>
+{% endblock %}

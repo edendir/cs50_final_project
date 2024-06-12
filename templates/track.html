@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Track
+{% endblock %}
+
+{% block main %}
+    <form action="/track" method="post">
+        <div class="mb-3" name="title">
+            <h1>{{ title }}</h1>
+        </div>
+        <div id="data" name="data" class="container">
+            <div class="row">
+              <div class="col-md">Exercise Name</div>
+              <div class="col-sm">Sets</div>
+              <div class="col-sm">Reps</div>
+              <div class="col-sm">Weight</div>
+            </div>
+            {% for exercise in workout %}
+            <div class="row">
+                <div class="col-md">{{ exercise['exercisename'] }}</div>
+                <div class="col-sm">{{ exercise['sets'] }}</div>
+                <div class="col-sm"><input name="reps{{ loop.index }}" value="{{ exercise['reps'] }}" type="text"></div>
+                <div class="col-sm"><input name="weight{{ loop.index }}" value="{{ exercise['weight'] }}" type="text"></div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit">Complete</button>
+    </form>
+{% endblock %}
